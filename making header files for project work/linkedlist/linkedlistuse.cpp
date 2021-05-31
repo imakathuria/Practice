@@ -1,6 +1,23 @@
 #include<iostream>
 using namespace std;
 #include "linkedlist.h"
+node*takeInput(){
+    int data;
+    cin>>data;
+    node*head=NULL,*tail=NULL;
+    while(data!=-1){
+        node*newnode=new node(data);
+        if(head==NULL){
+            head=newnode;
+            tail=newnode;
+        }else{
+            tail->next=newnode;
+            tail=tail->next;
+        }
+        cin>>data;
+    }
+    return head; 
+}
 void print(node*head){
     while(head){
         cout<<head->data<<" ";
@@ -8,18 +25,7 @@ void print(node*head){
     }
 }
 int main(){
-    // statically
-    node n1(10);
-    node*head=&n1;
-    // obj
-    node n2(20);
-    n1.next = &n2;
-    // cout<<n1.data<<" "<<n2.data<<endl;
-    
-    // dynamically
-    node*obj=new node(30);
-    obj->next=&n1;
-    head=obj;
+    node*head=takeInput();
     print(head);
     return 0;
 }
